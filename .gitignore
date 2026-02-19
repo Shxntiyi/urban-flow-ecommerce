@@ -1,0 +1,10 @@
+# Entorno virtual
+venv/
+__pycache__/
+
+# Credenciales y variables de entorno
+firebase-key.json
+.env
+
+# Archivos de base de datos local (si Django llega a crearla por defecto)
+db.sqlite3
