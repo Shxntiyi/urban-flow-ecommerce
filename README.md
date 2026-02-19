@@ -29,17 +29,13 @@ cd urban-flow-ecommerce
 **2. Crear y activar el entorno virtual:**
 \`\`\`bash
 # Windows
-python -m venv venv
+python -m venv venv -
 venv\Scripts\activate
 
-# Mac/Linux
-python3 -m venv venv
-source venv/bin/activate
-\`\`\`
 
 **3. Instalar dependencias:**
 \`\`\`bash
-pip install django firebase-admin
+pip install django firebase-admin requests
 \`\`\`
 
 **4. Configurar Credenciales de Firebase:**
