@@ -2,37 +2,75 @@
 
 {% block content %}
 <div class="max-w-6xl mx-auto px-4 py-12">
-    <div class="flex justify-between items-end mb-8">
+    
+    <div class="flex justify-between items-end mb-10">
         <h2 class="text-4xl font-extrabold tracking-tight">Inventario</h2>
         <a href="{% url 'product_create' %}" class="bg-green-600 text-white px-5 py-2 rounded-md font-semibold hover:bg-green-700 transition shadow-sm">+ Nuevo Producto</a>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {% for product in products %}
-        <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow">
-            <div class="p-6">
-                <div class="flex justify-between items-start mb-2">
-                    <h3 class="text-xl font-bold">{{ product.name }}</h3>
-                    <span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded-full">${{ product.price }}</span>
-                </div>
-                <p class="text-gray-500 text-sm mb-4 line-clamp-2">{{ product.description }}</p>
-                <p class="text-sm font-medium text-gray-700 mb-6">Stock: <span class="{% if product.stock < 5 %}text-red-500{% else %}text-green-600{% endif %}">{{ product.stock }} uds.</span></p>
-                
-                <div class="flex space-x-2">
-                    <a href="{% url 'product_update' product.id %}" class="flex-1 text-center bg-gray-100 text-gray-700 py-2 rounded-md font-medium hover:bg-gray-200 transition">Editar</a>
+    <div class="mb-14">
+        <h3 class="text-2xl font-bold border-b-2 border-black pb-2 mb-6 inline-block">Colección Hoodies</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {% for product in hoodies %}
+            <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow flex flex-col">
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold">{{ product.name }}</h3>
+                        <span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded-full">${{ product.price }}</span>
+                    </div>
+                    <p class="text-gray-500 text-sm mb-4 line-clamp-2 flex-grow">{{ product.description }}</p>
+                    <p class="text-sm font-medium text-gray-700 mb-6">Stock: <span class="{% if product.stock < 5 %}text-red-500{% else %}text-green-600{% endif %}">{{ product.stock }} uds.</span></p>
                     
-                    <form action="{% url 'product_delete' product.id %}" method="POST" class="flex-1">
-                        {% csrf_token %}
-                        <button type="submit" class="w-full text-center bg-red-50 text-red-600 py-2 rounded-md font-medium hover:bg-red-100 transition">Borrar</button>
-                    </form>
+                    <div class="flex space-x-2 mt-auto">
+                        <a href="{% url 'product_update' product.id %}" class="flex-1 text-center bg-gray-100 text-gray-700 py-2 rounded-md font-medium hover:bg-gray-200 transition">Editar</a>
+                        
+                        <form action="{% url 'product_delete' product.id %}" method="POST" class="flex-1">
+                            {% csrf_token %}
+                            <button type="submit" class="w-full text-center bg-red-50 text-red-600 py-2 rounded-md font-medium hover:bg-red-100 transition">Borrar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
+            {% empty %}
+            <div class="col-span-3 text-center py-10 text-gray-500 bg-white rounded-xl border border-dashed border-gray-300">
+                No hay hoodies registrados en esta categoría.
+            </div>
+            {% endfor %}
         </div>
-        {% empty %}
-        <div class="col-span-3 text-center py-12 text-gray-500 bg-white rounded-xl border border-dashed border-gray-300">
-            No hay productos registrados. Haz clic en "Nuevo Producto" para empezar.
-        </div>
-        {% endfor %}
     </div>
+
+    <div class="mb-14">
+        <h3 class="text-2xl font-bold border-b-2 border-black pb-2 mb-6 inline-block">Colección Camisas</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {% for product in camisas %}
+            <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow flex flex-col">
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold">{{ product.name }}</h3>
+                        <span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded-full">${{ product.price }}</span>
+                    </div>
+                    <p class="text-gray-500 text-sm mb-4 line-clamp-2 flex-grow">{{ product.description }}</p>
+                    <p class="text-sm font-medium text-gray-700 mb-6">Stock: <span class="{% if product.stock < 5 %}text-red-500{% else %}text-green-600{% endif %}">{{ product.stock }} uds.</span></p>
+                    
+                    <div class="flex space-x-2 mt-auto">
+                        <a href="{% url 'product_update' product.id %}" class="flex-1 text-center bg-gray-100 text-gray-700 py-2 rounded-md font-medium hover:bg-gray-200 transition">Editar</a>
+                        
+                        <form action="{% url 'product_delete' product.id %}" method="POST" class="flex-1">
+                            {% csrf_token %}
+                            <button type="submit" class="w-full text-center bg-red-50 text-red-600 py-2 rounded-md font-medium hover:bg-red-100 transition">Borrar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-3 text-center py-10 text-gray-500 bg-white rounded-xl border border-dashed border-gray-300">
+                No hay camisas registradas en esta categoría.
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
 </div>
 {% endblock %}
