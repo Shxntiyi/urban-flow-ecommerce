@@ -86,13 +86,23 @@ def logout_user(request):
 
 def product_list(request):
     docs = products_ref.stream()
-    products = []
+    
+    camisas = []
+    hoodies = []
+    
     for doc in docs:
         data = doc.to_dict()
         data['id'] = doc.id
-        products.append(data)
         
-    return render(request, 'store/product_list.html', {'products': products})
+        if data.get('category') == 'camisas':
+            camisas.append(data)
+        else:
+            hoodies.append(data) 
+            
+    return render(request, 'store/product_list.html', {
+        'camisas': camisas, 
+        'hoodies': hoodies
+    })
 
 
 def product_create(request):
