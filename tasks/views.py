@@ -7,6 +7,9 @@ from .firebase_client import db
 FIREBASE_WEB_API_KEY = "AIzaSyC02_mdoqaxC4ALSqU5RSXlIs1oKih6-Vs"
 products_ref = db.collection('products')
 
+# Version 1.1 - Se añade soporte para categorías: 'camisas' y 'hoodies'.
+# Productos sin categoría heredan 'hoodies' temporalmente en la vista.
+
 
 def landing_page(request):
     return render(request, 'store/landing.html')
