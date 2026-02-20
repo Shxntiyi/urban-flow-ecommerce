@@ -7,6 +7,9 @@ from .firebase_client import db
 FIREBASE_WEB_API_KEY = "AIzaSyC02_mdoqaxC4ALSqU5RSXlIs1oKih6-Vs"
 products_ref = db.collection('products')
 
+# Version 1.1 - Se añade soporte para categorías: 'camisas' y 'hoodies'.
+# Productos sin categoría heredan 'hoodies' temporalmente en la vista.
+
 
 def landing_page(request):
     return render(request, 'store/landing.html')
@@ -86,13 +89,23 @@ def logout_user(request):
 
 def product_list(request):
     docs = products_ref.stream()
-    products = []
+    
+    camisas = []
+    hoodies = []
+    
     for doc in docs:
         data = doc.to_dict()
         data['id'] = doc.id
-        products.append(data)
         
-    return render(request, 'store/product_list.html', {'products': products})
+        if data.get('category') == 'camisas':
+            camisas.append(data)
+        else:
+            hoodies.append(data) 
+            
+    return render(request, 'store/product_list.html', {
+        'camisas': camisas, 
+        'hoodies': hoodies
+    })
 
 
 def product_create(request):
@@ -102,6 +115,7 @@ def product_create(request):
     if request.method == 'POST':
         products_ref.add({
             'name': request.POST.get('name'),
+            'category': request.POST.get('category'),
             'description': request.POST.get('description'),
             'price': float(request.POST.get('price')),
             'stock': int(request.POST.get('stock'))
