@@ -22,16 +22,16 @@ Sigue estos pasos para ejecutar el proyecto en tu máquina local:
 
 **1. Clonar el repositorio:**
 \`\`\`bash
-git clone https://github.com/TU-USUARIO/urban-flow-ecommerce.git
+git clone [https://github.com/TU-USUARIO/urban-flow-ecommerce.git](https://github.com/TU-USUARIO/urban-flow-ecommerce.git)
 cd urban-flow-ecommerce
 \`\`\`
 
 **2. Crear y activar el entorno virtual:**
 \`\`\`bash
 # Windows
-python -m venv venv -
+python -m venv venv
 venv\Scripts\activate
-
+\`\`\`
 
 **3. Instalar dependencias:**
 \`\`\`bash
@@ -50,3 +50,9 @@ python manage.py runserver
 \`\`\`
 
 Visita `http://127.0.0.1:8000/` en tu navegador para ver la aplicación.
+
+## 👥 Equipo de Desarrollo
+
+* Juan Esteban Urrea Sastoque
+* Laura Sofía García Fajardo
+* Dayana Castañeda Peñalosa
