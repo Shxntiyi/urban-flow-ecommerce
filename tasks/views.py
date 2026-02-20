@@ -102,6 +102,7 @@ def product_create(request):
     if request.method == 'POST':
         products_ref.add({
             'name': request.POST.get('name'),
+            'category': request.POST.get('category'),
             'description': request.POST.get('description'),
             'price': float(request.POST.get('price')),
             'stock': int(request.POST.get('stock'))
